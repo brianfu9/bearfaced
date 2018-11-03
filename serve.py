@@ -59,10 +59,14 @@ def detect_faces_uri(uri):
                        'LIKELY', 'VERY_LIKELY')
     print('Faces:')
 
-    for face in faces:
-        print('anger: {}'.format(likelihood_name[face.anger_likelihood]))
-        print('joy: {}'.format(likelihood_name[face.joy_likelihood]))
-        print('surprise: {}'.format(likelihood_name[face.surprise_likelihood]))
+    for index, face in enumerate(faces):
+        print('Face {}'.format(index))
+        print('anger: {}'.format(face.anger_likelihood))
+        print('joy: {}'.format(face.joy_likelihood))
+        print('surprise: {}'.format(face.surprise_likelihood))
+        print('sorrow: {}'.format(face.surprise_likelihood))
+
+        print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), ('surprise', face.surprise_likelihood), key=lambda x: x[1]))
 
         vertices = (['({},{})'.format(vertex.x, vertex.y)
                     for vertex in face.bounding_poly.vertices])
