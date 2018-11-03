@@ -13,7 +13,7 @@ URI = ''
 FACES = []
 
 class ReusableForm(Form):
-    name = TextField('Name:', validators=[validators.required()], default = "asdfghkjl;")
+    name = TextField('Name:', validators=[validators.required()], default = "Url Here")
 
 # a route where we will display a welcome message via an HTML template
 @app.route("/", methods=['GET', 'POST'])
