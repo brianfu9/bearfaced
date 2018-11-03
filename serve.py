@@ -10,6 +10,7 @@ app._static_folder = './static'
 app.config['SECRET_KEY'] = 'briant'
 
 URI = ''
+FACES = []
 
 class ReusableForm(Form):
     name = TextField('Name:', validators=[validators.required()])
@@ -29,12 +30,13 @@ def index():
             detect_faces_uri(URI)
         else:
             flash('Invalid URL')
-    return render_template('index.html', message=message, form = form)
+    return render_template('index.html', message=message, form=form)
 
 
 @app.route("/result")
 def result():
     message = "Hello, World"
+    FACES = []
     return render_template('result.html', message=message)
 
 
@@ -52,21 +54,21 @@ def detect_faces_uri(uri):
     image.source.image_uri = uri
 
     response = client.face_detection(image=image)
-    faces = response.face_annotations
+    FACES = response.face_annotations
 
     # Names of likelihood from google.cloud.vision.enums
     likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE',
                        'LIKELY', 'VERY_LIKELY')
     print('Faces:')
 
-    for index, face in enumerate(faces):
+    for index, face in enumerate(FACES):
         print('Face {}'.format(index))
         print('anger: {}'.format(face.anger_likelihood))
         print('joy: {}'.format(face.joy_likelihood))
         print('surprise: {}'.format(face.surprise_likelihood))
-        print('sorrow: {}'.format(face.surprise_likelihood))
+        print('sorrow: {}'.format(face.sorrow_likelihood))
 
-        print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), ('surprise', face.surprise_likelihood), key=lambda x: x[1]))
+        print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood) key=lambda x: x[1]))
 
         vertices = (['({},{})'.format(vertex.x, vertex.y)
                     for vertex in face.bounding_poly.vertices])
