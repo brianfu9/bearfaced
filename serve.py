@@ -26,7 +26,7 @@ def index():
         if form.validate():
             # Save the comment here.
             URI = url
-            flash(url)
+            detect_faces_uri(URI)
         else:
             flash('Invalid URL')
     return render_template('index.html', message=message, form = form)
