@@ -3,6 +3,8 @@
 from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from google.cloud import vision
+from PIL import Image, ImageFilter
+import requests
 
 # creates a Flask application, named app
 app = Flask(__name__)
@@ -28,6 +30,7 @@ def index():
             # Save the comment here.
             URI = url
             detect_faces_uri(URI)
+            mask_image()
         else:
             flash('Invalid URL')
     return render_template('index.html', message=message, form=form)
@@ -68,12 +71,21 @@ def detect_faces_uri(uri):
         print('surprise: {}'.format(face.surprise_likelihood))
         print('sorrow: {}'.format(face.sorrow_likelihood))
 
-        print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1]))
+        print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), \
+            ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1]))
 
         vertices = (['({},{})'.format(vertex.x, vertex.y)
                     for vertex in face.bounding_poly.vertices])
 
         print('face bounds: {}'.format(','.join(vertices)))
+
+def mask_image():
+    response = requests.get(URI)
+    try:
+        img = Image.open(BytesIO(response.content))
+        img.show()
+    except:
+        print('Invalid image URL')
 
 # run the application
 if __name__ == "__main__":  
