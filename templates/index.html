@@ -31,6 +31,10 @@
         color: #FDFDFD;
         font-size: 50px;
         font-family: Arial, Helvetica, sans-serif, fixed-width;
+        text-shadow: 2px 2px #404040;
+      }
+      .form-control{
+        box-shadow: 0px 2px #000000;
       }
     </style>
     <title>Refrigerator</title>
@@ -48,6 +52,7 @@
         </ul>
         {% endif %}
       {% endwith %}
+      <br>
       <form action="" method="post">
         {{ form.csrf }}
         <div class=form-group>
