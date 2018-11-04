@@ -1,4 +1,4 @@
-<!DOCTYPE html style= "background-image: bg.jpg" >
+<!DOCTYPE html >
 
 <head>	
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -8,14 +8,16 @@
 	<style>
 	
 		body {
+			border: 0px dashed #1c87c9;
 			background-color: #F4F4F4;
-			background-image: url("/static/bg.jpg");
+			background-image: url("/static/bg2.png");
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-color: #FDB515;
 			text-align: center;
-			padding: 20% 0;
-      border: 3px dashed #1c87c9;
+			
+			padding: 25% 0;
+     
 			
 		}
 		* {
@@ -41,7 +43,7 @@
 
 
 h1 {
-			color: #003262;
+			color: #FDFDFD;
 			font-size: 30px;
 			font-family: Menlo, Monaco, fixed-width;
 		}
@@ -78,7 +80,8 @@ h1 {
 		
 	<div class = "container" >
 			<div class= "page-header">
-					<h1>>Refrigerator</h1>
+					<h1>Refrigerator</h1>
+					<br>
 			</div>
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
