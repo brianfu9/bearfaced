@@ -1,19 +1,31 @@
-<html>
-        .thumbnail img {
-            height:250px;
-            width:100%;
-        }
-    <head>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-    </head>
-    <body>
-        <form action="http://localhost:5000/">
-            <input type="submit" value="back" />
-        </form>
-
-       <div class=thumbnail> <img src="/static/rawimg.jpeg" alt="raw image"></div>
-        <div class=thumbnail> <img src="/static/modimg.jpeg" alt="modified image"></div>
-    </body>
+<html>  
+  <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <style>
+      .thumbnail img {
+        width:100%;
+      }
+      .img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>  
+    <table>
+      <tr>
+        <th><div class=thumbnail> <img src="/static/rawimg.jpeg" alt="raw image"></div></th>
+        <th><div class=thumbnail> <img src="/static/modimg.jpeg" alt="modified image"></div></th>  
+      </tr>
+    </table>
+    </br>
+    <center>
+      <form action="http://localhost:5000/">
+        <input type="submit" value="back" />
+      </form>
+    </center>
+  </body>
 </html>
