@@ -1,6 +1,6 @@
 # serve.py
 
-from flask import Flask, render_template, flash, request
+from flask import Flask, render_template, flash, request, redirect
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from google.cloud import vision
 from PIL import Image, ImageFilter
@@ -13,7 +13,7 @@ app._static_folder = './static'
 app.config['SECRET_KEY'] = 'briant'
 
 class ReusableForm(Form):
-    name = TextField('Name:', validators=[validators.required()], default = "Url Here")
+    name = TextField('URL:', validators=[validators.required(), validators.url()], default = "Url Here")
 
 # a route where we will display a welcome message via an HTML template
 @app.route("/", methods=['GET', 'POST'])
@@ -28,7 +28,7 @@ def index():
             # Save the comment here.            
             faces = detect_faces_uri(url)
             mask_image(url, faces)
-            result()
+            return redirect('result')
         else:
             flash('Invalid URL')
     return render_template('index.html', message=message, form=form)
