@@ -85,6 +85,7 @@ def mask_image(url, faces):
     except:
         print('Invalid image URL')
     img = Image.open(BytesIO(response.content))
+    img.convert('RGB')
     img.save("./static/rawimg.jpeg", "JPEG")
     emotions={'anger':'images/angry.png', 'joy':'images/smile.png', 'surprise':'images/surprise.png', 'sorrow':'images/cry.png'}
     for face in faces:                
