@@ -40,10 +40,10 @@ def result():
     return render_template('result.html', message=message)
 
 
-@app.route("/test")
+@app.route("/test1")
 def test():
     message = "Hello, World"
-    return render_template('test.html', message=message)
+    return render_template('test1.html', message=message)
 
 
 # api requests
