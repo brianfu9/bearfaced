@@ -1,111 +1,62 @@
 <!DOCTYPE html >
 
-<head>	
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-	<title>Refrigerator</title>
-	<style>
-	
-		body {
-			border: 0px dashed #1c87c9;
-			background-color: #F4F4F4;
-			background-image: url("/static/bg2.png");
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-color: #FDB515;
-			text-align: center;
-			
-			padding: 25% 0;
-     
-			
-		}
-		* {
-            margin: 0;
-            padding: 0;
-        }
-        .imgbox {
-            display: grid;
-            height: 100%;
-        }
-        .center-fit {
-            max-width: 100%;
-            max-height: 100vh;
-            margin: auto;
-        }
-</style>
-	
-	<style>
-		.container{
-			align-content: center;
-		}
-	
-
-
-h1 {
-			color: #FDFDFD;
-			font-size: 50px;
-			font-family: Arial, Helvetica, sans-serif, fixed-width;
-	
-		}
-
-		h2 {
-			color: #BC9B6A;
-			font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
-
-		}
-		
-		p {
-			color: white;
-			font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
-		}
-		.jumbotron{
-        background-color:#003262;
-        color:white;
-    }
-    /* Adds borders for tabs */
-    .tab-content {
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        padding: 10px;
-    }
-    .nav-tabs {
-        margin-bottom: 0;
-    }
-	</style>
-
-	<title>Hello, world!</title>
-</head>
-<body>  
-		
-	<div class = "container" >
-			<div class= "page-header">
-					<h1>Refrigerator</h1>
-					<br>
-			</div>
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message[1] }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  <form action="" method="post">
-      {{ form.csrf }}
-
-      <div class=form-group>
-				<input type= "text" class = "form-control" id = "name" name= "name" placeholder="Picture URL"
-	
-
-       class="input submit">
+  <head>	
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Refrigerator</title>
+    <style>
+      body {
+        border: 0px dashed #1c87c9;
+        background-color: #F4F4F4;
+        background-image: url("/static/bg2.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #FDB515;
+        text-align: center;	
+        padding: 25% 0;
+      }
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      .center-fit {
+        max-width: 100%;
+        max-height: 100vh;
+        margin: auto;
+      }
+      .container{
+        align-content: center;
+      }
+      h1 {
+        color: #FDFDFD;
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif, fixed-width;
+      }
+    </style>
+    <title>Refrigerator</title>
+  </head>
+  <body>  
+    <div class = "container" >
+      <h1>Refrigerator</h1>
+      <br>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message[1] }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      {% endwith %}
+      <form action="" method="post">
+        {{ form.csrf }}
+        <div class=form-group>
+          <input type= "text" class = "form-control" id = "name" name= "name" placeholder="Picture URL"
+          class="input submit">
           <input type="submit" value="Submit" />
-			</div>
-			
-	</form>
-
-</div>
-</body>
+        </div>
+	    </form>
+    </div>
+  </body>
 </html>
