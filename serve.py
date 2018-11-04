@@ -4,15 +4,13 @@ from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 from google.cloud import vision
 from PIL import Image, ImageFilter
+from io import BytesIO
 import requests
 
 # creates a Flask application, named app
 app = Flask(__name__)
 app._static_folder = './static'
 app.config['SECRET_KEY'] = 'briant'
-
-URI = ''
-FACES = []
 
 class ReusableForm(Form):
     name = TextField('Name:', validators=[validators.required()], default = "Url Here")
@@ -27,10 +25,10 @@ def index():
         url = request.form['name']
         print("url: ", url) 
         if form.validate():
-            # Save the comment here.
-            URI = url
-            detect_faces_uri(URI)
-            mask_image()
+            # Save the comment here.            
+            faces = detect_faces_uri(url)
+            mask_image(url, faces)
+            result()
         else:
             flash('Invalid URL')
     return render_template('index.html', message=message, form=form)
@@ -39,7 +37,6 @@ def index():
 @app.route("/result")
 def result():
     message = "Hello, World"
-    FACES = []
     return render_template('result.html', message=message)
 
 
@@ -57,14 +54,14 @@ def detect_faces_uri(uri):
     image.source.image_uri = uri
 
     response = client.face_detection(image=image)
-    FACES = response.face_annotations
+    faces = response.face_annotations
 
     # Names of likelihood from google.cloud.vision.enums
     likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE',
                        'LIKELY', 'VERY_LIKELY')
     print('Faces:')
 
-    for index, face in enumerate(FACES):
+    for index, face in enumerate(faces):
         print('Face {}'.format(index))
         print('anger: {}'.format(face.anger_likelihood))
         print('joy: {}'.format(face.joy_likelihood))
@@ -79,13 +76,30 @@ def detect_faces_uri(uri):
 
         print('face bounds: {}'.format(','.join(vertices)))
 
-def mask_image():
-    response = requests.get(URI)
+    return faces
+
+def mask_image(url, faces):
+    print(url)    
     try:
-        img = Image.open(BytesIO(response.content))
-        img.show()
+        response = requests.get(url)
     except:
         print('Invalid image URL')
+    img = Image.open(BytesIO(response.content))
+    img.save("rawimg.jpeg", "JPEG")
+    for face in faces:                
+        # print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), \
+        #     ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1]))
+
+        verticies = ([(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices])
+        width = abs(verticies[0][0] - verticies[1][0])
+        height = abs(verticies[1][1] - verticies[2][1])
+        print("w, h: ", width, height)
+        emj = Image.open("images/smile.png")
+        emj = emj.resize((width, height))
+        emj.convert('RGBA')
+        img.paste(emj, verticies[0], emj)
+    img.save("modimg.jpeg", "JPEG")
+
 
 # run the application
 if __name__ == "__main__":  
