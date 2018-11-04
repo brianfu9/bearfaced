@@ -85,7 +85,7 @@ def mask_image(url, faces):
     except:
         print('Invalid image URL')
     img = Image.open(BytesIO(response.content))
-    img.save("rawimg.jpeg", "JPEG")
+    img.save("./static/rawimg.jpeg", "JPEG")
     for face in faces:                
         # print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), \
         #     ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1]))
@@ -98,7 +98,7 @@ def mask_image(url, faces):
         emj = emj.resize((width, height))
         emj.convert('RGBA')
         img.paste(emj, verticies[0], emj)
-    img.save("modimg.jpeg", "JPEG")
+    img.save("./static/modimg.jpeg", "JPEG")
 
 
 # run the application
