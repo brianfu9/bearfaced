@@ -103,11 +103,11 @@ h1 {
 /* .form-control{
     box-shadow: 0px 2px #000000;
 } */
-/* .boxed {
+.boxed {
     width: 500px;
     border-color: red;
     background-color: rgb(202, 98, 91);
-} */
+}
 .box{
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 4pt;

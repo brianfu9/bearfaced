@@ -151,6 +151,7 @@ def mask_faces(url, faces):
         print("w, h: ", width, height)
         emj = Image.open(emotions[emotion[0]])
         emj = emj.resize((width, height))
+        emj = emj.rotate(face.tilt_angle)
         emj.convert('RGBA')
         img.paste(emj, verticies[0], emj)
     img.save("./static/modimg.jpeg", "JPEG")
