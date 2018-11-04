@@ -27,7 +27,6 @@ def index():
     print("errors: ", form.errors)
     if request.method == 'POST':
         url = request.form['name']
-        print("url: ", url) 
         if form.validate():
             # Save the comment here.            
             objects = localize_objects_uri(url)
