@@ -1,0 +1,5 @@
+flask
+flask-wtf
+google-cloud-python-sdk
+gcloud
+oauth2client==3.0.0
