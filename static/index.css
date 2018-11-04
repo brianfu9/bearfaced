@@ -1,4 +1,4 @@
-html, body { 
+/* html, body { 
     margin: 0; 
     padding: 0; 
     width: 100%; 
@@ -8,14 +8,14 @@ html, body {
     justify-content: center;
     align-items: center;
     color: #fff; font-size:18px;
-}
-    .buttonInside{
+} */
+/* .buttonInside{
     position:relative;
     margin-bottom:10px;
-}
-#container{
+} */
+/* #container{
     width: 300px;
-}
+} */
 input {
     height:40px;
     width: 100%;
@@ -52,19 +52,19 @@ input {
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
 } */
-button:hover{
+/* button:hover{
     cursor:pointer;
     padding: 2px; 
     border-radius: 4pt;
-    background-color: white; /* Green */
+    background-color: white; 
     border: 2px solid  rgb(120, 122, 128);
     color:black;
-}
-#help{
+} */
+/* #help{
     display:none;
     font-style:italic;
     font-size:0.8em;
-}
+} */
 body {
     border: 0px dashed #1c87c9;
     background-color: #F4F4F4;
@@ -72,10 +72,10 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;	
-    padding: 20% 0;
-    margin: 0; 
+    padding: 15% 0;
+    margin: 0;
     width: 100%; 
-    min-height: 100%;
+    min-height: 70%;
     font-family: Open Sans;
     display: flex;
     justify-content: center;
@@ -86,28 +86,28 @@ body {
     margin: 0;
     padding: 0;
 }
-.center-fit {
+/* .center-fit {
     max-width: 100%;
     max-height: 100vh;
     margin: auto;
-}
-.container{
+} */
+/* .container{
     align-content: center;
-}
+} */
 h1 {
     color: #FDFDFD;
     font-size: 50px;
     font-family: Arial, Helvetica, sans-serif, fixed-width;
     text-shadow: 2px 2px #404040;
 }
-.form-control{
+/* .form-control{
     box-shadow: 0px 2px #000000;
-}
-.boxed {
+} */
+/* .boxed {
     width: 500px;
     border-color: red;
     background-color: rgb(202, 98, 91);
-}
+} */
 .box{
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 4pt;
@@ -126,7 +126,7 @@ h1 {
 }
 .input-button:hover{
     cursor:pointer;
-    background-color: papayawhip; /* Green */
+    background-color: papayawhip;
     border: 5px solid  rgb(78, 78, 78);
     color:rgb(78, 78, 78);
 }
