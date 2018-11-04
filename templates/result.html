@@ -1,4 +1,8 @@
 <html>
+        .thumbnail img {
+            height:250px;
+            width:100%;
+        }
     <head>
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
@@ -8,7 +12,8 @@
         <form action="http://localhost:5000/">
             <input type="submit" value="back" />
         </form>
-        <img src="/static/rawimg.jpeg" alt="raw image">
-        <img src="/static/modimg.jpeg" alt="modified image">
+
+       <div class=thumbnail> <img src="/static/rawimg.jpeg" alt="raw image"></div>
+        <div class=thumbnail> <img src="/static/modimg.jpeg" alt="modified image"></div>
     </body>
 </html>
