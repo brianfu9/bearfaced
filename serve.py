@@ -49,7 +49,7 @@ def test():
 # api requests
 def detect_faces_uri(uri):
     """Detects faces in the file located in Google Cloud Storage or the web."""
-    client = vision.ImageAnnotatorClient(credential='/refrigerator-42d9689ebf32.json')
+    client = vision.ImageAnnotatorClient()
     image = vision.types.Image()
     image.source.image_uri = uri
 
