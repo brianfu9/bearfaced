@@ -4,6 +4,13 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <style>
+      body {
+        background-image: url("/static/bg2.png");
+        background-size: cover;
+			  background-repeat: no-repeat;
+			  background-color: #FDFDFD;
+			  text-align: center;
+      }
       .thumbnail img {
         width:100%;
       }
@@ -12,20 +19,28 @@
         width: 100%;
         height: auto;
       }
+      button {
+        padding: 10px 24px;    
+      }
+      .button {
+        -webkit-transition-duration: 0.7s; /* Safari */
+        transition-duration: 0.7s;
+      }
+      .button:hover {
+        background-color: white; /* Green */
+        color: rgb(120, 122, 128);}
     </style>
   </head>
-  <body>  
-    <table>
-      <tr>
-        <th><div class=thumbnail> <img src="/static/rawimg.jpeg" alt="raw image"></div></th>
-        <th><div class=thumbnail> <img src="/static/modimg.jpeg" alt="modified image"></div></th>  
-      </tr>
-    </table>
-    </br>
+  <body> 
     <center>
-      <form action="http://localhost:5000/">
-        <input type="submit" value="back" />
-      </form>
-    </center>
+      <table>
+        <tr>
+          <th class=thumbnail><img src="/static/rawimg.jpeg" alt="raw image"></th>
+          <th class=thumbnail><img src="/static/modimg.jpeg" alt="modified image"></th>  
+        </tr>
+      </table>
+    </center> 
+    </br>
+    <a href="http://localhost:5000/"><button>Try Another Picture</button></a>
   </body>
 </html>
