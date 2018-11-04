@@ -2,7 +2,30 @@
     <style>.thumbnail img {
             height:250px;
             width:100%;
-        }</style>
+        }
+        body {
+            background-image: url("/static/bg2.png");
+            background-size: cover;
+			background-repeat: no-repeat;
+			background-color: #FDB515;
+			text-align: center;
+        }
+        button {
+            padding: 10px 24px;
+
+            
+
+        }
+        .button {
+            -webkit-transition-duration: 0.7s; /* Safari */
+            transition-duration: 0.7s;
+}
+
+        .button:hover {
+            background-color: white; /* Green */
+            color: rgb(120, 122, 128);
+}
+        </style>
         
     <head>
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -10,11 +33,11 @@
         <meta http-equiv="Expires" content="0" />
     </head>
     <body>
-        <form action="http://localhost:5000/">
-            <input type="submit" value="back" />
-        </form>
 
        <div class=thumbnail> <img src="/static/rawimg.jpeg" alt="raw image"></div>
         <div class=thumbnail> <img src="/static/modimg.jpeg" alt="modified image"></div>
+        <br>
+        <a href="http://localhost:5000/"><button>Try Another Picture</button></a>
+        
     </body>
 </html>
