@@ -107,11 +107,6 @@ def mask_objects(url, objects):
     img.convert('RGB')
     imgwidth, imgheight = img.size
     img.save("./static/rawimg.jpeg", "JPEG")
-<<<<<<< HEAD
-    emotions={'anger':'images/angrybear.png', 'joy':'images/happybear.png', 'surprise':'images/surprisebear.png', 'sorrow':'images/sadbear.png'}
-    for face in faces:                
-        emotion = max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1])
-=======
     for obj in objects:
         if obj.score > 0.5 and obj.name not in avoid:
             print(obj.name, obj.score)
@@ -143,12 +138,12 @@ def mask_faces(url, faces):
         print('Invalid image URL')
     img = Image.open(pathlib.Path('./static/midimg.jpeg'))
     img.convert('RGB')
-    emotions={'anger':'images/angry.png', 'joy':'images/smile.png', 
-        'surprise':'images/surprise.png', 'sorrow':'images/cry.png'}
-    for face in faces:
+    
+    emotions={'anger':'images/angrybear.png', 'joy':'images/happybear.png', 
+        'surprise':'images/surprisebear.png', 'sorrow':'images/sadbear.png'}
+    for face in faces:                
         emotion = max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), 
             ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1])
->>>>>>> e3214f873674a23e3cbb2bf564f4ab5719d9a549
         print(emotion)
         verticies = ([(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices])
         width = abs(verticies[0][0] - verticies[1][0])
