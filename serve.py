@@ -67,15 +67,9 @@ def detect_faces_uri(uri):
         print('joy: {}'.format(face.joy_likelihood))
         print('surprise: {}'.format(face.surprise_likelihood))
         print('sorrow: {}'.format(face.sorrow_likelihood))
-
-        print(max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), \
-            ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1]))
-
         vertices = (['({},{})'.format(vertex.x, vertex.y)
                     for vertex in face.bounding_poly.vertices])
-
         print('face bounds: {}'.format(','.join(vertices)))
-
     return faces
 
 def mask_image(url, faces):
