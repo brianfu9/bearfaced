@@ -88,8 +88,7 @@ def mask_image(url, faces):
     img.save("./static/rawimg.jpeg", "JPEG")
     emotions={'anger':'images/angry.png', 'joy':'images/smile.png', 'surprise':'images/surprise.png', 'sorrow':'images/cry.png'}
     for face in faces:                
-        emotion = max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), \
-            ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1]))
+        emotion = max(('anger', face.anger_likelihood), ('joy', face.joy_likelihood), ('surprise', face.surprise_likelihood), ('sorrow', face.sorrow_likelihood), key=lambda x: x[1])
         print(emotion)
         verticies = ([(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices])
         width = abs(verticies[0][0] - verticies[1][0])
