@@ -94,7 +94,7 @@ def mask_image(url, faces):
         width = abs(verticies[0][0] - verticies[1][0])
         height = abs(verticies[1][1] - verticies[2][1])
         print("w, h: ", width, height)
-        emj = Image.open("images/smile.png")
+        emj = Image.open(emotions[emotion[0]])
         emj = emj.resize((width, height))
         emj.convert('RGBA')
         img.paste(emj, verticies[0], emj)
