@@ -97,7 +97,7 @@ def localize_objects_uri(uri):
     return objects
 
 def mask_objects(url, objects):
-    avoid=['Person', 'Woman', 'Man']
+    avoid=['Person', 'Woman', 'Man', 'Animal']
     try:
         response = requests.get(url)
     except:
@@ -115,20 +115,27 @@ def mask_objects(url, objects):
             height = abs(verticies[1][1] - verticies[2][1])
             print("w, h: ", width, height)
             try:
-                response = requests.get(search(obj.name))
+                url = search(obj.name)
+                response = requests.get(url)
                 emj = Image.open(io.BytesIO(response.content))
                 emj.convert('RGBA')
                 emj = emj.resize((width, height))
                 img.paste(emj, verticies[0], emj)
             except:
-                print('Invalid image URL')
+                print('error: ', url)
     img.save("./static/midimg.jpeg", "JPEG")
 
 def search(term):
     service = build("customsearch", "v1", developerKey="AIzaSyBdWD6hJRx8IKY6ueqHFXc6Dy1xCFwDrHE")
     res = service.cse().list(q=term,cx='018117316144593518101:jr7ol9zygzk',).execute()
-    url = res['items'][0]['pagemap']['cse_image'][0]['src']
-    return url
+    try:
+        return res['items'][0]['pagemap']['cse_image'][0]['src']
+    except:
+        pass
+    try:
+        return res['items'][1]['pagemap']['cse_image'][0]['src']
+    except:
+        pass
 
 def mask_faces(url, faces):
     try:
