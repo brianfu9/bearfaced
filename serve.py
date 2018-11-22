@@ -19,6 +19,13 @@ class ReusableForm(Form):
     name = TextField('URL:', validators=[validators.required(), 
         validators.url()], default = "Url Here")
 
+@app.after_request
+def set_response_headers(response):
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
 # a route where we will display a welcome message via an HTML template
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -116,13 +123,14 @@ def mask_objects(url, objects):
             print("w, h: ", width, height)
             try:
                 url = search(obj.name)
-                response = requests.get(url)
+                response = requests.get(url)                
                 emj = Image.open(io.BytesIO(response.content))
+                print(url)
                 emj.convert('RGBA')
                 emj = emj.resize((width, height))
                 img.paste(emj, verticies[0], emj)
             except:
-                print('error: ', url)
+                print('image error')
     img.save("./static/midimg.jpeg", "JPEG")
 
 def search(term):
